@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
-  validates :name,           presence: true
-  validates :daily_nickname, presence: true, uniqueness: true
+  has_many :nicknames
+
+  validates :name, presence: true
+
+  def nickname
+    nicknames.current.first.name
+  end
 end
